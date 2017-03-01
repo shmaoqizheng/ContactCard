@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Contact Card</title>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+	<style media="screen">
+		* {
+			margin: 0px;
+			padding: 0px;
+		}
+		label, button {
+			display: block;
+			margin-bottom: 10px;
+		}
+		textarea {
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			box-sizing: border-box;
+
+			width: 100%;
+		}
+		.input, .display {
+			padding: 10px;
+			width: 300px;
+			display: inline-block;
+			vertical-align: top;
+		}
+		.card {
+			padding: 40px 10px;
+			text-align: center;
+			border: 1px solid black;
+			margin-bottom: 10px;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="input">
+		<form class="" action="index.html" method="post">
+			<label for="">
+				First name: &nbsp;
+				<input id="first" type="text" name="" value="">
+			</label>
+			<label for="">
+				Last name: &nbsp;
+				<input id="last" type="text" name="" value="">
+			</label>
+			<textarea id="desc" name="name" rows="8" cols="80"></textarea>
+			<button id="add" type="button" name="button">Add User</button>
+		</form>
+	</div>
+	<div class="display">
+
+	</div>
+
+	<script type="text/javascript">
+	$(document).ready(function() {
+		$(document).on("click", "#add", function() {
+			$(".display").append("<div class='card'><h2>" + $("#first").val() + " " + $("#last").val() + "</h2><p data-alt-text='" + $("#desc").val() + "'>Click for description!</p></div>")
+		});
+
+		$(document).on("click", ".card", function() {
+			var paragraph = "";
+			$(this).children("h2").toggle();
+			paragraph = $(this).children("p").text();
+			$(this).children("p").text($(this).children("p").attr("data-alt-text"));
+			$(this).children("p").attr("data-alt-text", paragraph);
+		});
+	});
+	</script>
+</body>
+
+</html>
